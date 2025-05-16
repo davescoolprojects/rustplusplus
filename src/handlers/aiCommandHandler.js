@@ -40,13 +40,13 @@ module.exports = {
                 model: 'deepseek/deepseek-chat',
                 messages: [{
                     role: 'user',
-                    content: question
+                    content: question += "answer in 5 words"
                 }],
                 temperature: 0.7,
                 max_tokens: 2000
             }, {
                 headers: {
-                    'Authorization': `Bearer ${Config.general.openRouterApiKey}`,
+                    'Authorization': `Bearer ${Config.general.aiApiKey}`,
                     'HTTP-Referer': 'https://github.com/alexemanuelol/rustplusplus',
                     'X-Title': 'RustPlusPlus',
                     'Content-Type': 'application/json'
