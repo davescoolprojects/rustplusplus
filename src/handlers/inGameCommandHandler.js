@@ -21,6 +21,7 @@
 const SmartAlarmHandler = require('./smartAlarmHandler.js');
 const SmartSwitchGroupHandler = require('./smartSwitchGroupHandler.js');
 const SmartSwitchHandler = require('./smartSwitchHandler.js');
+const AiCommandHandler = require('./aiCommandHandler.js');
 
 module.exports = {
     inGameCommandHandler: async function (rustplus, client, message) {
@@ -43,6 +44,12 @@ module.exports = {
         else if (!rustplus.generalSettings.inGameCommandsEnabled) {
             return false;
         }
+
+        else if (commandLowerCase.startsWith('${prefix}ai')) {
+            if (await AiCommandHandler.aiCommandHandler(rustplus, client, command)) {
+            rustplus.logInGameCommand('AI', message);
+            return true;
+            }
         else if (commandLowerCase === `${prefix}${client.intlGet('en', 'commandSyntaxAfk')}` ||
             commandLowerCase === `${prefix}${client.intlGet(guildId, 'commandSyntaxAfk')}`) {
             rustplus.sendInGameMessage(rustplus.getCommandAfk());
