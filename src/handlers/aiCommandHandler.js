@@ -36,7 +36,7 @@ module.exports = {
         }
 
         try {
-            const response = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
+            const response = await axios.post('https://api.deepseek.com/chat/completions', {
                 model: 'deepseek/deepseek-chat',
                 messages: [{
                     role: 'user',
